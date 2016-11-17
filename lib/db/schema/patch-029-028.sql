@@ -1,6 +1,5 @@
 -- ALTER TABLE `unverifiedTokens`
--- DROP COLUMN mustVerify
--- ALGORITHM = INPLACE, LOCK = NONE;
+-- DROP COLUMN mustVerify;
 
 -- DROP PROCEDURE `createSessionToken_4`;
 -- DROP PROCEDURE `sessionTokenWithVerificationStatus_2`;

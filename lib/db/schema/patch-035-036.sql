@@ -20,16 +20,13 @@
 -- is inserting events into the table yet.
 
 ALTER TABLE securityEvents
-ADD COLUMN tokenVerificationId BINARY(16),
-ALGORITHM = INPLACE, LOCK = NONE;
+ADD COLUMN tokenVerificationId BINARY(16);
 
 CREATE INDEX securityEvents_uid_tokenVerificationId
-ON securityEvents (uid, tokenVerificationId)
-ALGORITHM = INPLACE LOCK = NONE;
+ON securityEvents (uid, tokenVerificationId);
 
 CREATE INDEX securityEvents_uid_ipAddrHmac_createdAt
-ON securityEvents (uid, ipAddrHmac, createdAt)
-ALGORITHM = INPLACE LOCK = NONE;
+ON securityEvents (uid, ipAddrHmac, createdAt);
 
 -- Update createSecurityEvent to insert the `tokenVerificationId`
 -- alongside the other fields.  We must continue writing the
@@ -96,8 +93,7 @@ END;
 -- new one instead.
 
 DROP INDEX securityEvents_uid_ipAddrHmac
-ON securityEvents
-ALGORITHM = INPLACE LOCK = NONE;
+ON securityEvents;
 
 -- But it's *not* safe to do the following in the same deployment,
 -- because of the potential for `verifyToken_2` to be called:
